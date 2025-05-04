@@ -43,15 +43,40 @@
                     mkWest2nixHook
                     ;
                   zephyr = inputs.zephyr-nix.packages.${system};
+                  west2nix = inputs.west2nix.packages.${system}.default;
                 })
               ];
             };
-            devShells.default = pkgs.mkShell {
-              nativeBuildInputs = [
-                inputs.west2nix.packages.${system}.default
-                (pkgs.python3.withPackages (ps: with ps; [ west ]))
-              ];
-            };
+            devShells.default =
+              with pkgs;
+              let
+                west2nixHook = mkWest2nixHook {
+                  manifest = ./west2nix.toml;
+                };
+              in
+              mkShell {
+                nativeBuildInputs = [
+                  west2nix
+                  (zephyr.pythonEnv.override {
+                    # use python3 after nur overlay
+                    inherit python3;
+                    zephyr-src =
+                      (lib.lists.findFirst (x: x.name == "zephyr") null west2nixHook.projectsWithFakeGit).src;
+                  })
+                  zephyr.hosttools-nix
+                  gitMinimal
+                  cmake
+                  ninja
+                  which
+                ];
+                buildInputs = [
+                  (zephyr.sdk.override {
+                    targets = [
+                      "arm-zephyr-eabi"
+                    ];
+                  })
+                ];
+              };
             formatter = pkgs.nixfmt-rfc-style;
           };
       }

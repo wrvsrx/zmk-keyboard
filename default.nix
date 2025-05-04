@@ -20,25 +20,38 @@ let
   west2nixHook = mkWest2nixHook {
     manifest = ./west2nix.toml;
   };
+  west2nixModules = stdenv.mkDerivation {
+    name = "west2nix-modules";
+    unpackPhase = "true";
+    nativeBuildInputs = [
+      west2nixHook
+      gitMinimal
+    ];
+    env = {
+      dontUseWestConfigure = true;
+      dontUseWestBuild = true;
+      dontFixup = true;
+    };
+    buildPhase = "true";
+    installPhase = ''
+      mkdir -p $out
+      cp -r . $out
+    '';
+  };
   buildSofle =
     {
       name ? board,
       board,
       shields,
     }:
-    let
-      config = "${./.}" + "/config";
-    in
     stdenv.mkDerivation {
       inherit name;
-      unpackPhase = "true";
+      src = west2nixModules;
       env = {
         Zephyr_DIR = "zephyr/share/zephyr-package/cmake";
-        dontUseWestConfigure = true;
         dontUseCmakeConfigure = true;
       };
       nativeBuildInputs = [
-        west2nixHook
         (zephyr.pythonEnv.override {
           # use python3 after nur overlay
           inherit python3;
@@ -58,27 +71,23 @@ let
           ];
         })
       ];
-      westBuildFlags = [
-        "-s"
-        "zmk/app"
-        "-b"
-        board
-        "--"
-        ("-DZMK_CONFIG=${config}")
-        "-DZMK_EXTRA_MODULES=${./externals/zmk-sofle}"
-        "-DSHIELD=${lib.concatStringsSep ";" shields}"
-      ];
-      preBuild = ''
-        echo $PWD
-        cp -r ${config} .
+      buildPhase = ''
+        mkdir config
+        cp ${./config/west.yml} config/west.yml
         west init -l config
+
         sed -i "s|#!/usr/bin/env python3|#!$(which python)|g" \
           modules/lib/nanopb/generator/protoc \
           modules/lib/nanopb/generator/protoc-gen-nanopb
+
+        west build -s zmk/app -b ${board} -- \
+          -DZMK_CONFIG=${./.}/config \
+          -DZMK_EXTRA_MODULES=${./externals/zmk-sofle} \
+          -DSHIELD=${lib.concatStringsSep ";" shields}
       '';
       installPhase = ''
         mkdir $out
-        cp ./build/zephyr/zmk.uf2 $out/$name.uf2
+        cp build/zephyr/zmk.uf2 $out/$name.uf2
       '';
     };
 in

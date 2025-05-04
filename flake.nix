@@ -33,7 +33,7 @@
         systems = [ "x86_64-linux" ];
         perSystem =
           { pkgs, system, ... }:
-          {
+          rec {
             _module.args.pkgs = import inputs.nixpkgs {
               inherit system;
               overlays = [
@@ -47,36 +47,13 @@
                 })
               ];
             };
-            devShells.default =
-              with pkgs;
-              let
-                west2nixHook = mkWest2nixHook {
-                  manifest = ./west2nix.toml;
-                };
-              in
-              mkShell {
-                nativeBuildInputs = [
-                  west2nix
-                  (zephyr.pythonEnv.override {
-                    # use python3 after nur overlay
-                    inherit python3;
-                    zephyr-src =
-                      (lib.lists.findFirst (x: x.name == "zephyr") null west2nixHook.projectsWithFakeGit).src;
-                  })
-                  zephyr.hosttools-nix
-                  gitMinimal
-                  cmake
-                  ninja
-                  which
-                ];
-                buildInputs = [
-                  (zephyr.sdk.override {
-                    targets = [
-                      "arm-zephyr-eabi"
-                    ];
-                  })
-                ];
-              };
+            inherit (pkgs.callPackage ./. { }) packages;
+            devShells.default = pkgs.mkShell {
+              inputsFrom = [ packages.eyelash_sofle_left ];
+              nativeBuildInputs = [
+                pkgs.west2nix
+              ];
+            };
             formatter = pkgs.nixfmt-rfc-style;
           };
       }

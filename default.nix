@@ -1,8 +1,6 @@
 {
   stdenv,
-  stdenvNoCC,
   zephyr, # from zephyr-nix
-  callPackage,
   cmake,
   ninja,
   mkWest2nixHook,
@@ -52,6 +50,7 @@ let
       env = {
         Zephyr_DIR = "zephyr/share/zephyr-package/cmake";
         dontUseCmakeConfigure = true;
+        dontFixup = true;
       };
       nativeBuildInputs = [
         (zephyr.pythonEnv.override {
@@ -136,7 +135,7 @@ in
       board = "eyelash_sofle_right";
       shields = [ "nice_view_custom" ];
     };
-    eyelash_sofle_keymap = stdenvNoCC.mkDerivation {
+    eyelash_sofle_keymap = stdenv.mkDerivation {
       name = "eyelash_sofle_keymap";
       src = ./.;
       nativeBuildInputs = [ python3.pkgs.keymap-drawer ];

@@ -43,6 +43,8 @@ let
       name ? board,
       board,
       shields,
+      snippets ? [ ],
+      extraCMakeFlags ? [ ],
     }:
     stdenv.mkDerivation {
       inherit name;
@@ -71,20 +73,38 @@ let
           ];
         })
       ];
-      buildPhase = ''
-        mkdir config
-        cp ${./config/west.yml} config/west.yml
-        west init -l config
+      buildPhase =
+        let
+          westBuildFlags =
+            [
+              "-s"
+              "zmk/app"
+              "-b"
+              board
+            ]
+            ++ (builtins.concatMap (snippet: [
+              "-S"
+              snippet
+            ]) snippets)
+            ++ [
+              "--"
+              ("-DZMK_CONFIG=${./.}" + "/config")
+              "-DZMK_EXTRA_MODULES=${./externals/zmk-sofle}"
+              "-DSHIELD=${lib.concatStringsSep ";" shields}"
+            ]
+            ++ extraCMakeFlags;
+        in
+        ''
+          mkdir config
+          cp ${./config/west.yml} config/west.yml
+          west init -l config
 
-        sed -i "s|#!/usr/bin/env python3|#!$(which python)|g" \
-          modules/lib/nanopb/generator/protoc \
-          modules/lib/nanopb/generator/protoc-gen-nanopb
+          sed -i "s|#!/usr/bin/env python3|#!$(which python)|g" \
+            modules/lib/nanopb/generator/protoc \
+            modules/lib/nanopb/generator/protoc-gen-nanopb
 
-        west build -s zmk/app -b ${board} -- \
-          -DZMK_CONFIG=${./.}/config \
-          -DZMK_EXTRA_MODULES=${./externals/zmk-sofle} \
-          -DSHIELD=${lib.concatStringsSep ";" shields}
-      '';
+          west build ${builtins.concatStringsSep " " westBuildFlags}
+        '';
       installPhase = ''
         mkdir $out
         cp build/zephyr/zmk.uf2 $out/$name.uf2
@@ -97,6 +117,16 @@ in
       name = "eyelash_sofle_reset";
       board = "eyelash_sofle_left";
       shields = [ "settings_reset" ];
+    };
+    eyelash_sofle_studio_left = buildSofle {
+      name = "eyelash_sofle_studio_left";
+      board = "eyelash_sofle_left";
+      shields = [ "nice_view" ];
+      snippets = [ "studio-rpc-usb-uart" ];
+      extraCMakeFlags = [
+        "-DCONFIG_ZMK_STUDIO=y"
+        "-DCONFIG_ZMK_STUDIO_LOCKING=n"
+      ];
     };
     eyelash_sofle_left = buildSofle {
       board = "eyelash_sofle_left";
@@ -124,6 +154,7 @@ in
       paths = [
         eyelash_sofle_reset
         eyelash_sofle_left
+        eyelash_sofle_studio_left
         eyelash_sofle_right
         eyelash_sofle_keymap
       ];

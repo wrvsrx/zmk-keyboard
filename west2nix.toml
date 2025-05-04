@@ -1,3 +1,6 @@
+[manifest]
+group-filter = ["-babblesim", "-optional"]
+
 [[manifest.projects]]
 name = "mario-peripheral-animation"
 url = "https://github.com/GPeye/mario-peripheral-animation"

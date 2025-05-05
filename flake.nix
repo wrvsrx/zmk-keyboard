@@ -50,8 +50,9 @@
             inherit (pkgs.callPackage ./. { }) packages;
             devShells.default = pkgs.mkShell {
               inputsFrom = [ packages.eyelash_sofle_left ];
-              nativeBuildInputs = [
-                pkgs.west2nix
+              nativeBuildInputs = with pkgs; [
+                west2nix
+                python3.pkgs.keymap-drawer
               ];
             };
             formatter = pkgs.nixfmt-rfc-style;

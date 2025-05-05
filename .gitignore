@@ -7,5 +7,9 @@
 /optional
 /mario-peripheral-animation
 
+# keymap-drawer
+/eyelash_sofle.yaml
+/eyelash_sofle.svg
+
 /.direnv/
 /result

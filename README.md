@@ -38,3 +38,27 @@ This repository itself provides:
    keymap -c externals/zmk-sofle/keymap_drawer.config.yaml parse -z config/eyelash_sofle.keymap > eyelash_sofle.yaml
    XDG_CACHE_HOME=$PWD/keymap-drawer/cache keymap -c externals/zmk-sofle/keymap_drawer.config.yaml draw -j config/eyelash_sofle.json eyelash_sofle.yaml > eyelash_sofle.svg
    ```
+
+## Build
+
+### Build via nix
+
+``` bash
+nix build '.?submodules=1'
+```
+
+### Build via cli
+
+``` bash
+west init -l config
+west update
+# eyelash_sofle_studio_left
+Zephyr_DIR=$PWD/zephyr/share/zephyr-package/cmake west build -s $PWD/zmk/app -b "eyelash_sofle_left" -S studio-rpc-usb-uart -- -DZMK_CONFIG=$PWD/config "-DSHIELD=nice_view" -DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_STUDIO_LOCKING=n -DZMK_EXTRA_MODULES=$PWD/externals/zmk-sofle
+# eyelash_sofle_left
+Zephyr_DIR=$PWD/zephyr/share/zephyr-package/cmake west build -s $PWD/zmk/app -b "eyelash_sofle_left" -- -DZMK_CONFIG=$PWD/config "-DSHIELD=nice_view" -DZMK_EXTRA_MODULES=$PWD/externals/zmk-sofle
+# eyelash_sofle_right
+Zephyr_DIR=$PWD/zephyr/share/zephyr-package/cmake west build -s $PWD/zmk/app -b "eyelash_sofle_right" -- -DZMK_CONFIG=$PWD/config "-DSHIELD=nice_view" -DZMK_EXTRA_MODULES=$PWD/externals/zmk-sofle
+# eyelash_sofle_reset
+Zephyr_DIR=$PWD/zephyr/share/zephyr-package/cmake west build -s $PWD/zmk/app -b "eyelash_sofle_left" -- -DZMK_CONFIG=$PWD/config "-DSHIELD=settings_reset" -DZMK_EXTRA_MODULES=$PWD/externals/zmk-sofle
+```
+

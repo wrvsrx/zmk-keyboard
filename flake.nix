@@ -48,12 +48,14 @@
               ];
             };
             packages = pkgs.callPackage ./. { };
-            devShells.default = pkgs.mkShell {
-              # inputsFrom = [ packages.eyelash_sofle_left ];
-              nativeBuildInputs = with pkgs; [
-                west2nix
-                python3.pkgs.keymap-drawer
-              ];
+            devShells = {
+              zmk-sofle = pkgs.mkShell {
+                inputsFrom = [ packages.zmk-sofle.passthru.eyelash_sofle_left ];
+                nativeBuildInputs = with pkgs; [
+                  west2nix
+                  python3.pkgs.keymap-drawer
+                ];
+              };
             };
             formatter = pkgs.nixfmt-rfc-style;
           };

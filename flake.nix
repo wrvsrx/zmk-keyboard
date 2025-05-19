@@ -47,9 +47,9 @@
                 })
               ];
             };
-            inherit (pkgs.callPackage ./. { }) packages;
+            packages = pkgs.callPackage ./. { };
             devShells.default = pkgs.mkShell {
-              inputsFrom = [ packages.eyelash_sofle_left ];
+              # inputsFrom = [ packages.eyelash_sofle_left ];
               nativeBuildInputs = with pkgs; [
                 west2nix
                 python3.pkgs.keymap-drawer

@@ -89,8 +89,8 @@ stdenv.mkDerivation {
         ++ [
           "--"
           ("-DZMK_CONFIG=${./.}" + "/config")
-          "-DZMK_EXTRA_MODULES=${lib.concatStringsSep ";" extraModules}"
-          "-DSHIELD=${lib.concatStringsSep ";" shields}"
+          "-DZMK_EXTRA_MODULES=\"${lib.concatStringsSep ";" extraModules}\""
+          "-DSHIELD=\"${lib.concatStringsSep ";" shields}\""
         ]
         ++ extraCMakeFlags;
     in

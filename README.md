@@ -1,6 +1,10 @@
 # zmk-keyboard
 
-This is a repository for compiling the firmware of eyelash_sofle. It fetches three parts of code from the [upstream](https://github.com/a741725193/zmk-sofle):
+This is a repository for compiling the firmware of [zmk-sofle](https://github.com/a741725193/zmk-sofle) and [zmk-sofle-dongle](https://github.com/a741725193/zmk-solfe-dongle)
+
+## zmk-sofle
+
+It fetches three parts of code from the [upstream](https://github.com/a741725193/zmk-sofle):
 
 1. `eyelash_sofle.{conf,json}` (firmware compilation configuration files)
 2. `boards` + `zephyr/module.yml` (firmware source code)  
@@ -39,6 +43,10 @@ This repository itself provides:
    XDG_CACHE_HOME=$PWD/keymap-drawer/cache keymap -c externals/zmk-sofle/keymap_drawer.config.yaml draw -j config/eyelash_sofle.json eyelash_sofle.yaml > eyelash_sofle.svg
    ```
 
+## zmk-sofle-dongle
+
+Similar to zmk-sofle.
+
 ## Build
 
 ### Build via nix
@@ -52,13 +60,5 @@ nix build '.?submodules=1'
 ``` bash
 west init -l config
 west update
-# eyelash_sofle_studio_left
-Zephyr_DIR=$PWD/zephyr/share/zephyr-package/cmake west build -s $PWD/zmk/app -b "eyelash_sofle_left" -S studio-rpc-usb-uart -- -DZMK_CONFIG=$PWD/config "-DSHIELD=nice_view" -DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_STUDIO_LOCKING=n -DZMK_EXTRA_MODULES=$PWD/externals/zmk-sofle
-# eyelash_sofle_left
-Zephyr_DIR=$PWD/zephyr/share/zephyr-package/cmake west build -s $PWD/zmk/app -b "eyelash_sofle_left" -- -DZMK_CONFIG=$PWD/config "-DSHIELD=nice_view" -DZMK_EXTRA_MODULES=$PWD/externals/zmk-sofle
-# eyelash_sofle_right
-Zephyr_DIR=$PWD/zephyr/share/zephyr-package/cmake west build -s $PWD/zmk/app -b "eyelash_sofle_right" -- -DZMK_CONFIG=$PWD/config "-DSHIELD=nice_view" -DZMK_EXTRA_MODULES=$PWD/externals/zmk-sofle
-# eyelash_sofle_reset
-Zephyr_DIR=$PWD/zephyr/share/zephyr-package/cmake west build -s $PWD/zmk/app -b "eyelash_sofle_left" -- -DZMK_CONFIG=$PWD/config "-DSHIELD=settings_reset" -DZMK_EXTRA_MODULES=$PWD/externals/zmk-sofle
+./test_build.sh
 ```
-

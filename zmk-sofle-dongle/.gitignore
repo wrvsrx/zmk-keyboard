@@ -1,0 +1,17 @@
+/.west/
+/build/
+/zmk/
+/zephyr/
+/modules/
+/tools/
+/optional
+/mario-peripheral-animation
+/prospector-zmk-module
+/zmk-dongle-display
+
+# keymap-drawer
+/eyelash_sofle.yaml
+/eyelash_sofle.svg
+
+/.direnv/
+/result

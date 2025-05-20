@@ -56,6 +56,13 @@
                   python3.pkgs.keymap-drawer
                 ];
               };
+              zmk-sofle-dongle = pkgs.mkShell {
+                inputsFrom = [ packages.zmk-sofle-dongle.passthru.eyelash_sofle_peripheral_left ];
+                nativeBuildInputs = with pkgs; [
+                  west2nix
+                  python3.pkgs.keymap-drawer
+                ];
+              };
             };
             formatter = pkgs.nixfmt-rfc-style;
           };

@@ -2,6 +2,7 @@
   newScope,
   lib,
   symlinkJoin,
+  runCommand,
 }:
 lib.makeScope newScope (
   self:
@@ -13,6 +14,14 @@ lib.makeScope newScope (
   {
     zmk-sofle = import ./zmk-sofle {
       inherit buildSofle buildKeymap symlinkJoin;
+    };
+    zmk-sofle-dongle = import ./zmk-sofle-dongle {
+      inherit
+        buildSofle
+        buildKeymap
+        symlinkJoin
+        runCommand
+        ;
     };
   }
 )

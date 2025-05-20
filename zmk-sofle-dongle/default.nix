@@ -29,6 +29,7 @@ let
         west2nixConfig = ./west2nix.toml;
         westYml = ./config/west.yml;
         extraModules = [ zmk-sofle-dongle-module ];
+        zmkConfig = ./config;
       }
     );
   eyelash_sofle_reset = buildSofle' {

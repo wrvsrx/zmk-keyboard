@@ -16,6 +16,7 @@
 
 {
   name ? board,
+  zmkConfig,
   west2nixConfig,
   westYml,
   extraModules ? [ ],
@@ -88,7 +89,7 @@ stdenv.mkDerivation {
         ]) snippets)
         ++ [
           "--"
-          ("-DZMK_CONFIG=${./.}" + "/config")
+          "-DZMK_CONFIG=${zmkConfig}"
           "-DZMK_EXTRA_MODULES=\"${lib.concatStringsSep ";" extraModules}\""
           "-DSHIELD=\"${lib.concatStringsSep ";" shields}\""
         ]

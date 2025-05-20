@@ -9,6 +9,7 @@ let
     buildSofle (
       x
       // {
+        zmkConfig = ./config;
         west2nixConfig = ./west2nix.toml;
         westYml = ./config/west.yml;
         extraModules = [ ../externals/zmk-sofle ];

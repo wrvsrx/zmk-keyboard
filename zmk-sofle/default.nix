@@ -9,7 +9,7 @@ let
     mkdir -p $out
     cp -r ${../externals/zmk-sofle/config/eyelash_sofle.conf} $out/eyelash_sofle.conf
     cp -r ${../externals/zmk-sofle/config/eyelash_sofle.json} $out/eyelash_sofle.json
-    cp -r ${./config/west.yml} $out/west.yml
+    cp -r ${../externals/zmk-sofle/config/west.yml} $out/west.yml
     cp -r ${./config/eyelash_sofle.keymap} $out/eyelash_sofle.keymap
   '';
   buildSofle' =

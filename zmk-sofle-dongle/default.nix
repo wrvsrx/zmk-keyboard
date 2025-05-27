@@ -5,7 +5,7 @@
   runCommand,
 }:
 let
-  keyboardName = "eyelash_sofle_dongle";
+  keyboardName = "eyelash_sofle";
   zmk-sofle-dongle-config = runCommand "zmk-sofle-dongle-config" { } ''
     mkdir -p $out
     cp -r ${../externals/zmk-sofle-dongle/config/eyelash_sofle.conf} $out/eyelash_sofle.conf

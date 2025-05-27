@@ -16,11 +16,6 @@
 # - board: nice_nano_v2
 #   shield: settings_reset
 let
-  zmk-sofle-dongle-module = runCommand "zmk-sofle-dongle-modle" { } ''
-    mkdir -p $out
-    cp -r ${../externals/zmk-sofle-dongle/config/boards} $out/boards
-    cp -r ${../externals/zmk-sofle-dongle/zephyr} $out/zephyr
-  '';
   zmk-sofle-dongle-config = runCommand "zmk-sofle-dongle-config" { } ''
     mkdir -p $out
     cp -r ${../externals/zmk-sofle-dongle/config/eyeslash_sofle.conf} $out/eyeslash_sofle.conf
@@ -34,7 +29,7 @@ let
       x
       // {
         west2nixConfig = ./west2nix.toml;
-        extraModules = [ zmk-sofle-dongle-module ];
+        extraModules = [ ../externals/zmk-sofle-dongle ];
         zmkConfig = zmk-sofle-dongle-config;
       }
     );

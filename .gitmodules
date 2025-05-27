@@ -1,6 +1,6 @@
 [submodule "externals/zmk-sofle"]
 	path = externals/zmk-sofle
-	url = https://github.com/a741725193/zmk-sofle.git
+	url = https://github.com/wrvsrx/zmk-sofle.git
 [submodule "externals/zmk-sofle-dongle"]
 	path = externals/zmk-sofle-dongle
-	url = https://github.com/a741725193/zmk-solfe-dongle
+	url = https://github.com/wrvsrx/zmk-sofle-dongle.git

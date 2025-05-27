@@ -1,20 +1,19 @@
 { stdenvNoCC, python3 }:
 {
-  name,
+  keymapName,
   keymapConfig,
-  keymap,
-  keymapJSON,
+  zmkConfig,
 }:
 stdenvNoCC.mkDerivation {
-  inherit name;
+  name = keymapName + "_keymap";
   unpackPhase = "true";
   nativeBuildInputs = [ python3.pkgs.keymap-drawer ];
   buildPhase = ''
-    keymap -c ${keymapConfig} parse -z ${keymap} > eyelash_sofle.yaml
-    XDG_CACHE_HOME=${../keymap-drawer/cache} keymap -c ${keymapConfig} draw -j ${keymapJSON} eyelash_sofle.yaml > eyelash_sofle.svg
+    keymap -c ${keymapConfig} parse -z ${zmkConfig}/${keymapName}.keymap > ${keymapName}.yaml
+    XDG_CACHE_HOME=${../keymap-drawer/cache} keymap -c ${keymapConfig} draw -j ${zmkConfig}/${keymapName}.json ${keymapName}.yaml > ${keymapName}.svg
   '';
   installPhase = ''
     mkdir -p $out
-    cp eyelash_sofle.svg $out
+    cp ${keymapName}.svg $out
   '';
 }

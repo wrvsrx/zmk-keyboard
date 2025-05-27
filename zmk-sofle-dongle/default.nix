@@ -73,10 +73,9 @@ let
     ];
   };
   eyelash_sofle_keymap = buildKeymap {
-    name = "eyelash_sofle_keymap";
+    keymapName = "eyeslash_sofle";
     keymapConfig = ../externals/zmk-sofle-dongle/keymap_drawer.config.yaml;
-    keymap = ./config/eyeslash_sofle.keymap;
-    keymapJSON = ../externals/zmk-sofle-dongle/config/eyeslash_sofle.json;
+    zmkConfig = zmk-sofle-dongle-config;
   };
 in
 symlinkJoin {

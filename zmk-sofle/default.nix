@@ -46,10 +46,9 @@ let
     shields = [ "nice_view_custom" ];
   };
   eyelash_sofle_keymap = buildKeymap {
-    name = "eyelash_sofle_keymap";
+    keymapName = "eyelash_sofle";
     keymapConfig = ../externals/zmk-sofle/keymap_drawer.config.yaml;
-    keymap = ./config/eyelash_sofle.keymap;
-    keymapJSON = ../externals/zmk-sofle/config/eyelash_sofle.json;
+    zmkConfig = zmk-sofle-config;
   };
 in
 symlinkJoin {

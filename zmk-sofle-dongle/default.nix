@@ -5,6 +5,7 @@
   runCommand,
 }:
 let
+  keyboardName = "eyelash_sofle_dongle";
   zmk-sofle-dongle-config = runCommand "zmk-sofle-dongle-config" { } ''
     mkdir -p $out
     cp -r ${../externals/zmk-sofle-dongle/config/eyelash_sofle.conf} $out/eyelash_sofle.conf
@@ -23,12 +24,12 @@ let
       }
     );
   eyelash_sofle_reset = buildSofle' {
-    name = "eyelash_sofle_reset";
+    name = "${keyboardName}_reset";
     board = "nice_nano_v2";
     shields = [ "settings_reset" ];
   };
   eyelash_sofle_central_dongle_oled = buildSofle' {
-    name = "eyelash_sofle_central_dongle_oled";
+    name = "${keyboardName}_central_oled";
     board = "nice_nano_v2";
     shields = [
       "eyelash_sofle_central_dongle"
@@ -41,7 +42,7 @@ let
     ];
   };
   eyelash_sofle_peripheral_left = buildSofle' {
-    name = "eyelash_sofle_peripheral_left";
+    name = "${keyboardName}_peripheral_left";
     board = "nice_nano_v2";
     shields = [
       "eyelash_sofle_peripheral_left"
@@ -49,7 +50,7 @@ let
     ];
   };
   eyelash_sofle_peripheral_right = buildSofle' {
-    name = "eyelash_sofle_peripheral_right";
+    name = "${keyboardName}_peripheral_right";
     board = "nice_nano_v2";
     shields = [
       "eyelash_sofle_peripheral_right"
@@ -57,13 +58,13 @@ let
     ];
   };
   eyelash_sofle_keymap = buildKeymap {
-    keymapName = "eyelash_sofle";
+    keymapName = keyboardName;
     keymapConfig = ../externals/zmk-sofle-dongle/keymap_drawer.config.yaml;
     zmkConfig = zmk-sofle-dongle-config;
   };
 in
 symlinkJoin {
-  name = "eyelash_sofle_dongle_firmware";
+  name = "${keyboardName}_firmware";
   paths = [
     eyelash_sofle_reset
     eyelash_sofle_peripheral_left

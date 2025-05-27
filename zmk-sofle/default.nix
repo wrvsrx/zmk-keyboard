@@ -5,6 +5,7 @@
   runCommand,
 }:
 let
+  keyboardName = "eyelash_sofle";
   zmk-sofle-config = runCommand "zmk-sofle-config" { } ''
     mkdir -p $out
     cp -r ${../externals/zmk-sofle/config/eyelash_sofle.conf} $out/eyelash_sofle.conf
@@ -23,13 +24,13 @@ let
       }
     );
   eyelash_sofle_reset = buildSofle' {
-    name = "eyelash_sofle_reset";
-    board = "eyelash_sofle_left";
+    name = "${keyboardName}_reset";
+    board = "${keyboardName}_left";
     shields = [ "settings_reset" ];
   };
   eyelash_sofle_studio_left = buildSofle' {
-    name = "eyelash_sofle_studio_left";
-    board = "eyelash_sofle_left";
+    name = "${keyboardName}_studio_left";
+    board = "${keyboardName}_left";
     shields = [ "nice_view" ];
     snippets = [ "studio-rpc-usb-uart" ];
     extraCMakeFlags = [
@@ -38,21 +39,21 @@ let
     ];
   };
   eyelash_sofle_left = buildSofle' {
-    board = "eyelash_sofle_left";
+    board = "${keyboardName}_left";
     shields = [ "nice_view" ];
   };
   eyelash_sofle_right = buildSofle' {
-    board = "eyelash_sofle_right";
+    board = "${keyboardName}_right";
     shields = [ "nice_view_custom" ];
   };
   eyelash_sofle_keymap = buildKeymap {
-    keymapName = "eyelash_sofle";
+    keymapName = keyboardName;
     keymapConfig = ../externals/zmk-sofle/keymap_drawer.config.yaml;
     zmkConfig = zmk-sofle-config;
   };
 in
 symlinkJoin {
-  name = "eyelash_sofle_firmware";
+  name = "${keyboardName}_firmware";
   paths = [
     eyelash_sofle_reset
     eyelash_sofle_left

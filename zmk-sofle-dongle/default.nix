@@ -21,15 +21,21 @@ let
     cp -r ${../externals/zmk-sofle-dongle/config/boards} $out/boards
     cp -r ${../externals/zmk-sofle-dongle/zephyr} $out/zephyr
   '';
+  zmk-sofle-dongle-config = runCommand "zmk-sofle-dongle-config" { } ''
+    mkdir -p $out
+    cp -r ${../externals/zmk-sofle-dongle/config/eyeslash_sofle.conf} $out/eyeslash_sofle.conf
+    cp -r ${../externals/zmk-sofle-dongle/config/eyeslash_sofle.json} $out/eyeslash_sofle.json
+    cp -r ${../externals/zmk-sofle-dongle/config/west.yml} $out/west.yml
+    cp -r ${./config/eyeslash_sofle.keymap} $out/eyeslash_sofle.keymap
+  '';
   buildSofle' =
     x:
     buildSofle (
       x
       // {
         west2nixConfig = ./west2nix.toml;
-        westYml = ./config/west.yml;
         extraModules = [ zmk-sofle-dongle-module ];
-        zmkConfig = ./config;
+        zmkConfig = zmk-sofle-dongle-config;
       }
     );
   eyelash_sofle_reset = buildSofle' {

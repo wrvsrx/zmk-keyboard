@@ -18,7 +18,6 @@
   name ? board,
   zmkConfig,
   west2nixConfig,
-  westYml,
   extraModules ? [ ],
   board,
   shields,
@@ -96,8 +95,8 @@ stdenv.mkDerivation {
         ++ extraCMakeFlags;
     in
     ''
-      mkdir config
-      cp ${westYml} config/west.yml
+      mkdir -p config
+      cp ${zmkConfig}/west.yml config
       west init -l config
 
       sed -i "s|#!/usr/bin/env python3|#!$(which python)|g" \

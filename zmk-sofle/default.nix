@@ -2,17 +2,24 @@
   buildSofle,
   buildKeymap,
   symlinkJoin,
+  runCommand,
 }:
 let
+  zmk-sofle-config = runCommand "zmk-sofle-config" { } ''
+    mkdir -p $out
+    cp -r ${../externals/zmk-sofle/config/eyelash_sofle.conf} $out/eyelash_sofle.conf
+    cp -r ${../externals/zmk-sofle/config/eyelash_sofle.json} $out/eyelash_sofle.json
+    cp -r ${./config/west.yml} $out/west.yml
+    cp -r ${./config/eyelash_sofle.keymap} $out/eyelash_sofle.keymap
+  '';
   buildSofle' =
     x:
     buildSofle (
       x
       // {
-        zmkConfig = ./config;
         west2nixConfig = ./west2nix.toml;
-        westYml = ./config/west.yml;
         extraModules = [ ../externals/zmk-sofle ];
+        zmkConfig = zmk-sofle-config;
       }
     );
   eyelash_sofle_reset = buildSofle' {

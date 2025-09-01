@@ -50,7 +50,16 @@
                 })
               ];
             };
-            packages = pkgs.callPackage ./. { };
+            packages =
+              let
+                packages' = pkgs.callPackage ./. { };
+              in
+              {
+                inherit (packages')
+                  zmk-sofle
+                  zmk-sofle-dongle
+                  ;
+              };
             devShells = {
               zmk-sofle = pkgs.mkShell {
                 inputsFrom = [ packages.zmk-sofle.passthru.eyelash_sofle_left ];

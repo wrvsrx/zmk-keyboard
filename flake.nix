@@ -20,7 +20,10 @@
       inputs.zephyr-nix.follows = "zephyr-nix";
     };
     zephyr-nix = {
-      url = "github:adisbladis/zephyr-nix";
+      # pin zephyr-nix to old version
+      # reason: zephyr-sdk, zephyr should match. zmk currently use zephyr 3.5.0+zmkfixes, which is not compatible with zephyr sdk >= 0.17.1
+      # so we pin zephyr-nix to this commit to avoid upgrading zephyr sdk to 0.17.2
+      url = "github:nix-community/zephyr-nix/5ba6564b7f2db1508bcf87f0f869b8e4f8be96c1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

@@ -67,7 +67,7 @@ stdenv.mkDerivation {
     which
   ];
   buildInputs = [
-    (zephyr.sdk.override {
+    (zephyr.sdk-0_16.override {
       targets = [
         "arm-zephyr-eabi"
       ];

@@ -19,6 +19,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.zephyr-nix.follows = "zephyr-nix";
     };
+    # evaluation warning: zephyr-pythonEnv: Found invalid Python constraints for: ["ruff","spsdk"]
+    # Reason: some dependencies of zephyr use too strict version on ruff and spsdk (they use ==)
     zephyr-nix = {
       url = "github:nix-community/zephyr-nix";
       inputs.nixpkgs.follows = "nixpkgs";

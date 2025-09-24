@@ -1,5 +1,5 @@
 {
-  description = "zmk keyboard";
+  description = "My zmk keyboard configurations";
 
   inputs = {
     nixpkgs.url = "github:wrvsrx/nixpkgs/patched-nixos-unstable";
@@ -75,7 +75,7 @@
                 ];
               };
             };
-            formatter = pkgs.nixfmt-rfc-style;
+            formatter = pkgs.nixfmt;
           };
       }
     );

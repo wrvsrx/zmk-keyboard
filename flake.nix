@@ -3,17 +3,11 @@
 
   inputs = {
     nixpkgs.url = "github:wrvsrx/nixpkgs/patched-nixos-unstable";
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs-lib.follows = "nixpkgs";
-    };
-    flake-utils.url = "github:numtide/flake-utils";
     nur-wrvsrx = {
       url = "github:wrvsrx/nur-packages";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-parts.follows = "flake-parts";
-      inputs.flake-utils.follows = "flake-utils";
     };
+    flake-parts.follows = "nur-wrvsrx/flake-parts";
     west2nix = {
       url = "github:wrvsrx/west2nix/patched-master";
       inputs.nixpkgs.follows = "nixpkgs";

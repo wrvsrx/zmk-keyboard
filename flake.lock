@@ -3,15 +3,16 @@
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
+          "nur-wrvsrx",
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1756770412,
-        "narHash": "sha256-+uWLQZccFHwqpGqr2Yt5VsW/PbeJVTn9Dk6SHWhNRPw=",
+        "lastModified": 1759362264,
+        "narHash": "sha256-wfG0S7pltlYyZTM+qqlhJ7GMw2fTF4mLKCIVhLii/4M=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "4524271976b625a4a605beefd893f270620fd751",
+        "rev": "758cf7296bee11f1706a574c77d072b8a7baa881",
         "type": "github"
       },
       "original": {
@@ -61,11 +62,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1758706475,
-        "narHash": "sha256-aUiugEFnLko+z2p3pcVB7tLFIn7d7jImI5xhaFmZ6Ps=",
+        "lastModified": 1759890236,
+        "narHash": "sha256-FRkuFTdEEH+TorbZz9FP3Fw+im87RALHrYI2oNAGD7c=",
         "owner": "wrvsrx",
         "repo": "nixpkgs",
-        "rev": "ab05b194a13a451576ed0a5ac00e49c19c161ed7",
+        "rev": "0fd166ca68e92876c6cc6caa562657caf97cf5d0",
         "type": "github"
       },
       "original": {
@@ -77,22 +78,18 @@
     },
     "nur-wrvsrx": {
       "inputs": {
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "flake-utils": [
-          "flake-utils"
-        ],
+        "flake-parts": "flake-parts",
+        "flake-utils": "flake-utils",
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1758708120,
-        "narHash": "sha256-3o/ZRT7MM9vlcfUM+3xFaU7GLo0VQ6oKCBfou/qvq84=",
+        "lastModified": 1759845003,
+        "narHash": "sha256-6MqFivE6EGMNl3cXO23w4e5kAPA9kP74QyWZypFkgIE=",
         "owner": "wrvsrx",
         "repo": "nur-packages",
-        "rev": "f5d350079ebd6b6aad92bf02eeaa2265b199c6fc",
+        "rev": "cee63c4704dcd66b80ba44fb5c886348767190a3",
         "type": "github"
       },
       "original": {
@@ -124,8 +121,10 @@
     },
     "root": {
       "inputs": {
-        "flake-parts": "flake-parts",
-        "flake-utils": "flake-utils",
+        "flake-parts": [
+          "nur-wrvsrx",
+          "flake-parts"
+        ],
         "nixpkgs": "nixpkgs",
         "nur-wrvsrx": "nur-wrvsrx",
         "west2nix": "west2nix",

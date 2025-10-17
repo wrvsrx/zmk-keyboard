@@ -2,11 +2,8 @@
   description = "My zmk keyboard configurations";
 
   inputs = {
-    nixpkgs.url = "github:wrvsrx/nixpkgs/patched-nixos-unstable";
-    nur-wrvsrx = {
-      url = "github:wrvsrx/nur-packages";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nur-wrvsrx.url = "github:wrvsrx/nur-packages";
+    nixpkgs.follows = "nur-wrvsrx/nixpkgs";
     flake-parts.follows = "nur-wrvsrx/flake-parts";
     west2nix = {
       url = "github:wrvsrx/west2nix/patched-master";
@@ -18,6 +15,7 @@
     zephyr-nix = {
       url = "github:nix-community/zephyr-nix";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.zephyr.url = "github:zmkfirmware/zephyr/v3.5.0+zmk-fixes";
     };
   };
 

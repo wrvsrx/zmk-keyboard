@@ -13,7 +13,7 @@
     # evaluation warning: zephyr-pythonEnv: Found invalid Python constraints for: ["ruff","spsdk"]
     # Reason: some dependencies of zephyr use too strict version on ruff and spsdk (they use ==)
     zephyr-nix = {
-      url = "github:nix-community/zephyr-nix";
+      url = "github:nix-community/zephyr-nix/b614ffaa1343beacaca254213451186af10e88f6";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.zephyr.url = "github:zmkfirmware/zephyr/v3.5.0+zmk-fixes";
     };

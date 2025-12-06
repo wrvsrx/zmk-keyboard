@@ -1,0 +1,14 @@
+/.west/
+/build/
+/kb_zmk_ps2_mouse_trackpoint_driver/
+/modules/
+/optional/
+/test-build.sh
+/tools/
+/zephyr/
+/zmk-board-eyelash/
+/zmk-dongle-display/
+/zmk-nice-oled/
+/zmk-pmw3610-driver/
+/zmk-tog-io/
+/zmk/

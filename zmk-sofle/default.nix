@@ -44,7 +44,7 @@ let
   };
   eyelash_sofle_right = buildSofle' {
     board = "${keyboardName}_right";
-    shields = [ "nice_view_custom" ];
+    shields = [ "nice_view" ];
   };
   eyelash_sofle_keymap = buildKeymap {
     keymapName = keyboardName;

@@ -5,5 +5,6 @@
 	path = externals/zmk-sofle-dongle
 	url = https://github.com/wrvsrx/zmk-sofle-dongle.git
 [submodule "externals/zmk-config-offsetkey"]
-	path = externals/zmk-offsetkey
+	path = externals/zmk-offsetkey-dongle
 	url = https://github.com/a741725193/zmk-config-offsetkey.git
+  branch = dongle

@@ -28,5 +28,13 @@ lib.makeScope newScope (
         runCommand
         ;
     };
+    zmk-offsetkey-dongle = import ./zmk-offsetkey-dongle {
+      inherit
+        buildSofle
+        buildKeymap
+        symlinkJoin
+        runCommand
+        ;
+    };
   }
 )

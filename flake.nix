@@ -49,6 +49,7 @@
                 inherit (packages')
                   zmk-sofle
                   zmk-sofle-dongle
+                  zmk-offsetkey-dongle
                   ;
               };
             devShells = {

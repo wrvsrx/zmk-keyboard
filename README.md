@@ -28,7 +28,7 @@ This repository itself provides:
 
    ```bash
    west init -l config
-   west update
+   west update --group-filter +optional --group-filter +babblesim
    west2nix
    ```
 

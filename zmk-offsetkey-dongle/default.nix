@@ -71,6 +71,10 @@ symlinkJoin {
     eyelash_offsetkey_keymap
   ];
   passthru = {
-    eyelash_sofle_reset = eyelash_offsetkey_reset;eyelash_sofle_central_dongle_oled = eyelash_offsetkey_central_dongle_oled;eyelash_sofle_peripheral_left = eyelash_offsetkey_peripheral_left;eyelash_sofle_peripheral_right = eyelash_offsetkey_peripheral_right;eyelash_sofle_keymap = eyelash_offsetkey_keymap;
+    eyelash_offsetkey_reset = eyelash_offsetkey_reset;
+    eyelash_offsetkey_central_dongle_oled = eyelash_offsetkey_central_dongle_oled;
+    eyelash_offsetkey_peripheral_left = eyelash_offsetkey_peripheral_left;
+    eyelash_offsetkey_peripheral_right = eyelash_offsetkey_peripheral_right;
+    eyelash_offsetkey_keymap = eyelash_offsetkey_keymap;
   };
 }

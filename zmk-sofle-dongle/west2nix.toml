@@ -1,3 +1,6 @@
+[manifest]
+group-filter = ["-babblesim", "-optional"]
+
 [[manifest.projects]]
 name = "mario-peripheral-animation"
 url = "https://github.com/GPeye/mario-peripheral-animation"
@@ -9,11 +12,11 @@ hash = "sha256-K9ULKr5JnNYia1pVxuccbNLLR9dZTNsjD//zrTtbrS0="
 [[manifest.projects]]
 name = "zmk"
 url = "https://github.com/zmkfirmware/zmk"
-revision = "461f5c832fb8854d87dca54d113d306323697219"
+revision = "edf5c0814fd3ea202e43aad2d68fd32e882a518c"
 west-commands = "scripts/west-commands.yml"
 
 [manifest.projects.nix]
-hash = "sha256-Ot0eGTt54MW1kpVFqYhjYJK0fRNjgsrAugjjAYeEuRM="
+hash = "sha256-4OUbkU6tGixO0H9zAG8f2afXIvn2PGkGV9f2uexOmUU="
 
 [[manifest.projects]]
 name = "prospector-zmk-module"
@@ -26,20 +29,20 @@ hash = "sha256-efRFmbS7A/CuMrRiJ5B5nE86J+RG2QO7QI7VRLNJD2c="
 [[manifest.projects]]
 name = "zmk-dongle-display"
 url = "https://github.com/englmaxi/zmk-dongle-display"
-revision = "abced50d4f7b3703613e064bf181ef8c97b46a5b"
+revision = "c6c4be11c5ede722086a2a1f355cec9c101b9390"
 
 [manifest.projects.nix]
-hash = "sha256-BojjDDUSi0Thet7a4CFqoJjMoI3x1BLNo1SFsYlSVEw="
+hash = "sha256-FFX0nFb7A/5ZJ1yLUChAEo//L+iFebD0UdFV0EgZjnU="
 
 [[manifest.projects]]
 name = "zephyr"
 url = "https://github.com/zmkfirmware/zephyr"
-revision = "0fa4cc26d8b1e5243570ccc0f7f66c4c428d2961"
+revision = "dacab4875df72109b96cc8977547a0dc04875bcd"
 clone-depth = 1
 west-commands = "scripts/west-commands.yml"
 
 [manifest.projects.nix]
-hash = "sha256-PydEUwnacM+fAcmLI1bkc8G2S1/XNo4QikBdx1mK1aA="
+hash = "sha256-E599+0giBlmva0WJSs5t5FKOoLYmrAi51iTNT+qOyXE="
 
 [[manifest.projects]]
 name = "nanopb"
@@ -379,12 +382,12 @@ hash = "sha256-Ys1dAKZjhdBNg/0/UD+6Qj0ayFboxu8yQDdGofgGTdQ="
 [[manifest.projects]]
 name = "hal_nordic"
 url = "https://github.com/zephyrproject-rtos/hal_nordic"
-revision = "d054a315eb888ba70e09e5f6decd4097b0276d1f"
+revision = "884c4d61746bc35fbd379c169fc87ddb56c6461d"
 path = "modules/hal/nordic"
 groups = ["hal"]
 
 [manifest.projects.nix]
-hash = "sha256-0rSZyKvK0iE4qPtPlRfF0IPndi/lLfJk4WJRbwLx9no="
+hash = "sha256-L6jCDtBfE78JZDo81VCvdJxFWMoj7EJYzXMAhgqyJ9Q="
 
 [[manifest.projects]]
 name = "hal_nuvoton"

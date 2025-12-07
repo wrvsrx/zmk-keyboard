@@ -11,7 +11,7 @@ let
     cp -r ${../externals/zmk-offsetkey-dongle/config/offsetkey.conf} $out/offsetkey.conf
     cp -r ${../externals/zmk-offsetkey-dongle/config/offsetkey.json} $out/offsetkey.json
     cp -r ${../externals/zmk-offsetkey-dongle/config/west.yml} $out/west.yml
-    cp -r ${../externals/zmk-offsetkey-dongle/config/offsetkey.keymap} $out/offsetkey.keymap
+    cp -r ${./config/offsetkey.keymap} $out/offsetkey.keymap
   '';
   buildSofle' =
     x:
